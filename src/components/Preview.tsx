@@ -22,7 +22,7 @@ export const Preview: React.FC = () => {
       <ReactMarkdown
         components={{
           code(props) {
-            const { children, className, node, ...rest } = props;
+            const { children, className, node, ref, ...rest } = props;
             const match = /language-(\w+)/.exec(className || '');
             return match ? (
               <SyntaxHighlighter
@@ -30,7 +30,7 @@ export const Preview: React.FC = () => {
                 PreTag="div"
                 children={String(children).replace(/\n$/, '')}
                 language={match[1]}
-                style={vscDarkPlus}
+                style={vscDarkPlus as any}
                 className="rounded-xl my-4 text-sm"
               />
             ) : (
